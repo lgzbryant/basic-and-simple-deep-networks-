@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-total_epoches = 80
+total_epoches = 66
 learning_rate = 0.001
 
 transform = transforms.Compose([
@@ -167,22 +167,6 @@ for epoch in range(total_epoches):
             correct += (predicted == labels).sum().item()
 
         print('Accuracy of the model on the test images: {} %'.format(100 * correct / total))    
-        
-
-# # Test the model
-# model.eval()
-# with torch.no_grad():
-    # correct = 0
-    # total = 0
-    # for images, labels in test_loader:
-        # images = images.to(device)
-        # labels = labels.to(device)
-        # outputs = model(images)
-        # _, predicted = torch.max(outputs.data, 1)
-        # total += labels.size(0)
-        # correct += (predicted == labels).sum().item()
-
-    # print('Accuracy of the model on the test images: {} %'.format(100 * correct / total))
 
 # Save the model checkpoint
 torch.save(model.state_dict(), 'resnet.ckpt')
